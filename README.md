@@ -4,6 +4,8 @@ SmoothCam is a cinematic utility for Garry's Mod which provides smooth and preci
 
 One of the main features of this utility is that the smoothing can be framerate-locked, allowing for the guaranteed rendering of every single frame. However, third-party video editing software must be used to remove any duplicate frames as a result of lag.
 
+[![Video Demonstration](https://i.imgur.com/A5pQbee.png)](https://i.venner.io/GrIwzn1ZkM.mp4)
+
 ### Usage
 
 ```
