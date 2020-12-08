@@ -454,15 +454,26 @@ concommand.Add("smoothcam", function(ply, _, args)
 		elseif cmd == "time" then
 			
 			if args[2] then
-				local seconds = tonumber(args[2])
-				if seconds and seconds > 0 then
-					SmoothCam.Sequence.Time = seconds
-					SmoothCam:print(bad, "Time set to ", pink, tostring(seconds))
+				local n, unit = args[2]:lower():Trim():match("^(%d+)%s*(%S*)$")
+				n = tonumber(n)
+				if n and n > 0 then
+					if unit == "ms" or unit == "milliseconds" or unit == "millisecond" then
+						SmoothCam.Sequence.Time = n / 1000
+						SmoothCam:print(good, "Time set to ", pink, tostring(n), " milliseconds")
+					elseif not unit or unit == "" or unit == "s" or unit == "second" or unit == "seconds" then
+						SmoothCam.Sequence.Time = n
+						SmoothCam:print(good, "Time set to ", pink, tostring(n), " seconds")
+					else
+						SmoothCam:print(bad, "Unrecognized time unit.")
+						SmoothCam:print(bad, "Examples: ", pink, "500ms", color_white, ", ", pink, "5s")
+					end
 				else
-					SmoothCam:print(bad, "Please enter a valid number of seconds greater than zero.")
+					SmoothCam:print(bad, "Please enter a valid number greater than zero.")
+					SmoothCam:print(bad, "Examples: ", pink, "500ms", color_white, ", ", pink, "5s")
 				end
 			else
-				SmoothCam:print(bad, "Please enter a time in seconds.")
+				SmoothCam:print(bad, "Please enter a valid time.")
+				SmoothCam:print(bad, "Examples: ", pink, "500ms", color_white, ", ", pink, "5s")
 			end
 
 		elseif cmd == "fps" then
