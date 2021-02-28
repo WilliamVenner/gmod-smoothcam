@@ -574,4 +574,12 @@ concommand.Add("smoothcam", function(ply, _, args)
 	else
 		SmoothCam:print(bad, "You cannot run any commands but ", pink, "stop", color_white, " and ", pink, "help", color_white, " whilst a sequence is playing.")
 	end
+end, function(cmd, args)
+	local subcommands = {"help", "play", "reset", "add", "remove", "list", "time", "fps", "ease", "linear", "save", "load", "forget", "saved"}
+
+	for index, subcommand in ipairs(subcommands) do
+		subcommands[index] = cmd .. " " .. subcommand 
+	end
+
+	return subcommands
 end)
